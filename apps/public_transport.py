@@ -257,13 +257,6 @@ def draw_bus_stop_map(checklist_bus_stops):
 
 
 layout = dbc.Container([
-    dbc.Row([
-        dbc.Col([
-            dbc.Card([
-                dbc.CardBody([html.H1("Barcelona - Urban Analysis", style={'text-align':'left', 'color':'red'})])
-            ])
-        ], width=12)
-    ]),
     ### PART CONCERNING ACCIDENTS
     dbc.Row([
         dbc.Col([

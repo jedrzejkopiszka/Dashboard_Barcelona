@@ -168,13 +168,6 @@ def migration_by_district_table():
     return table
 
 layout = dbc.Container([
-    dbc.Row([
-        dbc.Col([
-            dbc.Card([
-                dbc.CardBody([html.H1("Barcelona - Urban Analysis", style={'text-align':'left', 'color':'red'})])
-            ])
-        ], width=12)
-    ]),
     ### PART CONCERNING DEMOGRAPHICS
     dbc.Row([
         dbc.Col([

@@ -7,6 +7,7 @@ from app import server
 from apps import public_transport, migrations
 
 app.layout = html.Div([
+    html.H1("Barcelona - Urban Analysis", style={'text-align':'left', 'color':'red'}),
     dcc.Location(id='url', refresh=False),
     html.Div([
         dcc.Link('Public Transport', href='/apps/public_transport'),
@@ -26,7 +27,7 @@ def display_page(pathname):
     if pathname == '/apps/migrations':
         return migrations.layout
     else:
-        return "404 Page Error! Please choose a link"
+        return migrations.layout
 
 
 if __name__ == '__main__':
