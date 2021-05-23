@@ -56,7 +56,7 @@ districts = [
 age_groups = ["{}-{}".format(x, x+4) for x in range(0, 99, 5)]
 age_groups.append(">=100")
 
-births_df = pd.read_csv("/Users/jedrzejkopiszka/UniversityProjects/Data_visualisation/WearableDashboard/Barcelona_data/births.csv")
+births_df = pd.read_csv("Barcelona_data/births.csv")
 
 births_graph_df = births_df.groupby(["Year", "Gender"])['Number'].sum().reset_index(name='Number')
 births_graph_df.sort_values(by=['Year'], inplace=True)
@@ -71,7 +71,7 @@ births_fig.update_layout(
     }
 )
 
-deaths_df = pd.read_csv("/Users/jedrzejkopiszka/UniversityProjects/Data_visualisation/WearableDashboard/Barcelona_data/deaths.csv")
+deaths_df = pd.read_csv("Barcelona_data/deaths.csv")
 deaths_df["Age"] = pd.Categorical(
     deaths_df["Age"],
     categories=age_groups,
@@ -93,7 +93,7 @@ deaths_fig.update_layout(
 
 # Sankey plot (migration flow chart)
 
-flow = pd.read_csv("/Users/jedrzejkopiszka/UniversityProjects/Data_visualisation/WearableDashboard/Barcelona_data/immigrants_emigrants_by_destination.csv")
+flow = pd.read_csv("Barcelona_data/immigrants_emigrants_by_destination.csv")
 emigration = flow[flow['from'].str.contains("Barcelona")]
 immigration = flow[flow['to'].str.contains("Barcelona")]
 
@@ -120,7 +120,7 @@ def draw_migration(from_or_to=None):
     return fig
 
 # Datatable
-flow_by_sex = pd.read_csv("/Users/jedrzejkopiszka/UniversityProjects/Data_visualisation/WearableDashboard/Barcelona_data/immigrants_emigrants_by_sex.csv")
+flow_by_sex = pd.read_csv("Barcelona_data/immigrants_emigrants_by_sex.csv")
 flow_by_sex.drop(columns=['Neighborhood Name', 'Neighborhood Code'], inplace=True)
 flow_by_sex = flow_by_sex.groupby(by=["Year", "District Name", 'Gender']).sum()
 flow_by_sex = flow_by_sex.reset_index()
