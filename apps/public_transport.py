@@ -321,10 +321,8 @@ layout = dbc.Container([
     ], style={'height': '60vh', 'min-height': '560px', 'max-height':'650px'}),
     dbc.Row([
         dbc.Col([
-            dbc.Card([
-                dbc.CardBody([
-                    html.H2("Transport system", style={'text-align':'left', 'color':'red'})
-                ])
+            dbc.CardBody([
+                html.H2("Transport system", style={'text-align':'left', 'color':'red'})
             ])
         ], width=12)
     ]),

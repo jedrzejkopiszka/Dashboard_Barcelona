@@ -212,10 +212,8 @@ layout = dbc.Container([
     ]),
     dbc.Row([
         dbc.Col([
-            dbc.Card([
-                dbc.CardBody([
-                    html.H2("Migrations & population", style={'text-align':'left', 'color':'red'})
-                ])
+            dbc.CardBody([
+                html.H2("Migrations & population", style={'text-align':'left', 'color':'red'})
             ])
         ], width=12)
     ]),
