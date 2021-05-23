@@ -98,8 +98,8 @@ emigration = flow[flow['from'].str.contains("Barcelona")]
 immigration = flow[flow['to'].str.contains("Barcelona")]
 
 
-def draw_migration(from_or_to=None):
-    dataset = flow
+def draw_migration(from_or_to):
+    dataset = immigration
     if from_or_to == "immigration":
         dataset = immigration
     elif from_or_to == "emigration":
@@ -110,7 +110,7 @@ def draw_migration(from_or_to=None):
     source = label_encoder.transform(dataset['from'])
     target = label_encoder.transform(dataset['to'])
     label = label_encoder.classes_
-    value = immigration['weight']
+    value = dataset['weight']
 
     link = dict(source=source, target=target, value=value)
     node = dict(label=label)
@@ -226,18 +226,18 @@ layout = dbc.Container([
                     dcc.Dropdown(
                         id="migration_dropdown",
                         options=[
-                            {'label': 'all', 'value': 'all'},
                             {'label': 'immigration', "value": "immigration"},
                             {'label': 'emigration', 'value': 'emigration'}
                         ],
+                        placeholder='immigration'
                     ),
                     dcc.Graph(
                         id='migration_sankey',
-                        figure=draw_migration()
+                        figure={}
                     )
                 ])
             ])
-        ], width=7),
+        ], width=6),
         dbc.Col([
             dbc.Card([
                 dbc.CardBody([
@@ -246,7 +246,7 @@ layout = dbc.Container([
                     ])
                 ])
             ])
-        ], width=12-7)
+        ], width=6)
     ]),
 
 

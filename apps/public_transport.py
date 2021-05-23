@@ -161,6 +161,28 @@ transport_options_checklist = [{'label': str(b), 'value': b} for b in sorted(tra
 transport_value_checklist = [b for b in sorted(transport_data.Transport.unique())]
 
 
+def apply_color_transport(category):
+    if category == "Airport train":
+        return "green"
+    elif category == 'Cableway':
+        return "red"
+    elif category == "Funicular":
+        return "orange"
+    elif category == "Maritime station":
+        return "blue"
+    elif category == "RENFE":
+        return "yellow"
+    elif category == "Railway (FGC)":
+        return "black"
+    elif category == "Tram":
+        return "lightblue"
+    else:
+        return "brown"
+
+
+transport_data['Color'] = transport_data.Transport.apply(lambda x: apply_color_transport(x))
+
+
 def draw_transport_map(checklist_transport_providers=None):
     if checklist_transport_providers is not None:
         df_sub = transport_data[transport_data.Transport.isin(checklist_transport_providers)]
@@ -175,6 +197,7 @@ def draw_transport_map(checklist_transport_providers=None):
         selected={'marker': {'opacity': 0.5, 'size': 25}},
         hoverinfo='text',
         hovertext=df_sub.Transport,
+        marker={'color': df_sub.Color}
     )]
 
     # Return figure
@@ -185,6 +208,7 @@ def draw_transport_map(checklist_transport_providers=None):
             clickmode='event+select',
             hovermode='closest',
             hoverdistance=2,
+            margin=dict(t=20, l=0, r=0, b=0),
             mapbox=dict(
                 accesstoken=mapbox_access_token,
                 bearing=25,
@@ -206,13 +230,13 @@ bus_stop_data.drop(columns=['Code', 'Bus.Stop'], inplace=True)
 
 def apply_color(category):
     if category == "Day bus stop":
-        return "green"
+        return "yellow"
     elif category == 'Night bus stop':
         return "blue"
     elif category == "Airport bus stop":
-        return "orange"
+        return "red"
     else:
-        return "brown"
+        return "green"
 
 
 bus_stop_data['Color'] = bus_stop_data.Transport.apply(lambda x: apply_color(x))
@@ -226,7 +250,7 @@ def draw_bus_stop_map(checklist_bus_stops):
         lon=bus_stop['Longitude'],
         lat=bus_stop['Latitude'],
         mode='markers',
-        unselected={'marker': {'opacity': 1}},
+        unselected={'marker': {'opacity': 0.7, 'size':20}},
         selected={'marker': {'opacity': 0.5, 'size': 25}},
         hoverinfo='text',
         hovertext=bus_stop["District.Name"],
@@ -241,6 +265,7 @@ def draw_bus_stop_map(checklist_bus_stops):
             clickmode='event+select',
             hovermode='closest',
             hoverdistance=2,
+            margin=dict(t=20, b=0, l=0, r=0),
             mapbox=dict(
                 accesstoken=mapbox_access_token,
                 bearing=25,
@@ -310,7 +335,8 @@ layout = dbc.Container([
                     dcc.Checklist(
                         id="transport_checklist",
                         options=transport_options_checklist,
-                        value=transport_value_checklist
+                        value=transport_value_checklist,
+                        inputStyle={'margin-left':"20px"}
                     ),
                     dcc.Graph(
                         id="transport_map",
@@ -330,7 +356,8 @@ layout = dbc.Container([
                             {'label': 'Airport bus stop', "value": "Airport bus stop"},
                             {'label': 'Bus station', 'value': 'Bus station'},
                         ],
-                        value=['Day bus stop' 'Night bus stop' 'Airport bus stop' 'Bus station']
+                        value=['Day bus stop'],
+                        inputStyle={'margin-left':'20px'}
                     ),
                     dcc.Graph(
                         id='bus_stop_map',
