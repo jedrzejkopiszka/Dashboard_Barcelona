@@ -54,7 +54,7 @@ districts = [
 age_groups = ["{}-{}".format(x, x+4) for x in range(0, 99, 5)]
 age_groups.append(">=100")
 
-births_df = pd.read_csv("/Users/jedrzejkopiszka/UniversityProjects/Data_visualisation/WearableDashboard/Barcelona_data/births.csv")
+births_df = pd.read_csv("Barcelona_data/births.csv")
 
 births_graph_df = births_df.groupby(["Year", "Gender"])['Number'].sum().reset_index(name='Number')
 births_graph_df.sort_values(by=['Year'], inplace=True)
@@ -69,7 +69,7 @@ births_fig.update_layout(
     }
 )
 
-deaths_df = pd.read_csv("/Users/jedrzejkopiszka/UniversityProjects/Data_visualisation/WearableDashboard/Barcelona_data/deaths.csv")
+deaths_df = pd.read_csv("Barcelona_data/deaths.csv")
 deaths_df["Age"] = pd.Categorical(
     deaths_df["Age"],
     categories=age_groups,
@@ -90,7 +90,7 @@ deaths_fig.update_layout(
 )
 ### LOGIC OF ACCIDENTS
 
-accident_df = pd.read_csv("/Users/jedrzejkopiszka/UniversityProjects/Data_visualisation/WearableDashboard/Barcelona_data/accidents_2017.csv")
+accident_df = pd.read_csv("Barcelona_data/accidents_2017.csv")
 
 accident_df['Weekday'] = pd.Categorical(
     accident_df['Weekday'],
@@ -156,7 +156,7 @@ accident_geojson = dl.GeoJSON(
         zoomToBounds = True, cluster = True, zoomToBoundsOnClick = True, superClusterOptions = {'radius': 100})
 
 # Logics behind transports
-transport_data = pd.read_csv('/Users/jedrzejkopiszka/UniversityProjects/Data_visualisation/WearableDashboard/Barcelona_data/transports.csv')
+transport_data = pd.read_csv('Barcelona_data/transports.csv')
 transport_options_checklist = [{'label': str(b), 'value': b} for b in sorted(transport_data.Transport.unique())]
 transport_value_checklist = [b for b in sorted(transport_data.Transport.unique())]
 
@@ -200,7 +200,7 @@ def draw_transport_map(checklist_transport_providers=None):
     }
 
 # Bus stops
-bus_stop_data = pd.read_csv("/Users/jedrzejkopiszka/UniversityProjects/Data_visualisation/WearableDashboard/Barcelona_data/bus_stops.csv")
+bus_stop_data = pd.read_csv("Barcelona_data/bus_stops.csv")
 bus_stop_data.drop(columns=['Code', 'Bus.Stop'], inplace=True)
 
 

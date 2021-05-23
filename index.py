@@ -11,7 +11,7 @@ app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
     html.Div([
         dcc.Link('Public Transport', href='/apps/public_transport'),
-        dcc.Link('Migrations', href='apps/migrations')
+        dcc.Link('Migrations', href='/apps/migrations')
     ], className='row'),
     html.Div(id='page-content', children=[])
 ])
