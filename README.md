@@ -1,6 +1,8 @@
 # Barcelona - statistical analysis
+
 ## Overview
 Our dashboard presents an analysis of a variety of data from the breath-taking city of Barcelona, focusing on city demographics and safety of transport.
+
 ## Screenshots & live preview
 <img src="https://github.com/jedrzejkopiszka/dashboard_barcelona2/blob/master/screenshots/Screenshot%202021-05-29%20at%2000.16.41.png" alt="Barcelona dashboard - transportataion 1st screenshot" width="60%"/>
 <img src="https://github.com/jedrzejkopiszka/dashboard_barcelona2/blob/master/screenshots/Screenshot%202021-05-29%20at%2000.17.06.png" alt="Barcelona dashboard - transportation 2nd screenshot" width="60%"/>
@@ -8,6 +10,11 @@ Our dashboard presents an analysis of a variety of data from the breath-taking c
 <img src="https://github.com/jedrzejkopiszka/dashboard_barcelona2/blob/master/screenshots/Screenshot%202021-05-29%20at%2000.17.42.png" alt="Barcelona dashboard - demographics data 2nd screenshot" width="60%"/>
 <br>
 Live preview of the app: https://barcelona-dataviz-dashboard.herokuapp.com
+
+## Functionalities 
+1. Each visualisation reacts to user input (either a dropdown or checklist)
+2. Datatable is filtered.
+3. One compontent triggers change in another two graphs.
 
 ## Tech stack
 Python 3.8 <br>
